@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dipmb68akrtrm"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_boxq5"]
+[ext_resource type="Texture2D" uid="uid://g30kotcbxomc" path="res://item/item_atlas.tres" id="2_k7m6e"]
+
+[resource]
+script = ExtResource("1_boxq5")
+name = "Health Potion"
+description = "A mysterious glass bottle, with a murky brown liquid inside. Who knows what could happen if you imbibe this?"
+stackable = true
+texture = ExtResource("2_k7m6e")

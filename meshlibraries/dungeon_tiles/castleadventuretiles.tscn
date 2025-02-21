@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://xrj7fhsufhwp"]
+
+[ext_resource type="PackedScene" uid="uid://cdux0j4je6nhq" path="res://meshlibraries/dungeon_tiles/castleadventuretiles.glb" id="1_q3ty2"]
+
+[node name="castleadventuretiles" instance=ExtResource("1_q3ty2")]
