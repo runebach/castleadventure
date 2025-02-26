@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rghcu46eoq3e"
+uid="uid://b6qffycsuxyst"
 path.s3tc="res://.godot/imported/castleadventuretiles_rocks_n.png-cb3a85ca9b51bf55927f16019b81765a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -28,7 +28,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://meshlibraries/dungeon_tiles/castleadventuretiles_rocks_n.png"
+roughness/src_normal="res://meshlibraries/castleadventuretiles_rocks_n.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

@@ -57,7 +57,7 @@ material = SubResource("StandardMaterial3D_sb36j")
 [node name="sconce" instance=ExtResource("1_wukgh")]
 
 [node name="sconce" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.18339, 0.22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.2, 0.22)
 rotation_order = 0
 
 [node name="CollisionShape3D" parent="sconce/StaticBody3D" index="0"]
@@ -70,7 +70,7 @@ light_color = Color(0.765587, 0.43271, 0.20875, 1)
 omni_range = 4.0
 omni_attenuation = 0.554785
 
-[node name="flames" type="GPUParticles3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.167783)
+[node name="flames" type="GPUParticles3D" parent="sconce" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.18339, -0.052217)
 process_material = SubResource("ParticleProcessMaterial_xpqrk")
 draw_pass_1 = SubResource("QuadMesh_w33py")
