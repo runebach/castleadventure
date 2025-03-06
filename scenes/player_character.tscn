@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8xoegkimxb3c"]
+[gd_scene load_steps=12 format=3 uid="uid://b8xoegkimxb3c"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_m7wjp"]
 [ext_resource type="AudioStream" uid="uid://cypfdjf6ofmpm" path="res://sounds/footstep.wav" id="2_u5ge5"]
@@ -6,6 +6,11 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_t7fde"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uj4vd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4qoxg"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f6rip"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [sub_resource type="Animation" id="Animation_nt7ci"]
 length = 0.001
@@ -20,6 +25,82 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/WeaponPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D/WeaponPivot/WeaponMesh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.404052, -0.433911, -0.628881)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Neck/Camera3D/WeaponPivot/WeaponMesh:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0580188, -0.00370625, 0.0638295)]
+}
+
+[sub_resource type="Animation" id="Animation_73o0l"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/WeaponPivot/WeaponMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.404052, -0.433911, -0.628881)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/WeaponPivot/WeaponMesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0444041, 0.0375379, -0.702194)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D/WeaponPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.21341, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_oqmev"]
@@ -52,10 +133,53 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_vbmf5"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/WeaponPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/WeaponPivot/WeaponMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.404052, -0.433911, -0.628881), Vector3(0.404052, -0.459839, -0.628881)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D/WeaponPivot/WeaponMesh:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-0.0580188, -0.00370625, 0.0638295), Vector3(-0.104149, 0.0649813, 0.103356)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_201kb"]
 _data = {
 "RESET": SubResource("Animation_nt7ci"),
-"head_bob": SubResource("Animation_oqmev")
+"attack": SubResource("Animation_73o0l"),
+"head_bob": SubResource("Animation_oqmev"),
+"idle": SubResource("Animation_vbmf5")
 }
 
 [node name="Player" type="CharacterBody3D"]
@@ -72,6 +196,7 @@ shape = SubResource("CylinderShape3D_uj4vd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.581507, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Neck"]
+cull_mask = 524287
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Neck/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0465171, 0.242876)
@@ -86,6 +211,38 @@ collision_mask = 4
 [node name="GrabRay" type="RayCast3D" parent="Neck/Camera3D"]
 target_position = Vector3(0, 0, -2)
 collision_mask = 8
+
+[node name="WeaponPivot" type="Node3D" parent="Neck/Camera3D"]
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="Neck/Camera3D/WeaponPivot"]
+transform = Transform3D(0.0997971, -0.0635712, -0.00037, 0.00636789, 0.996284, 0.00579862, -1.16415e-10, -0.0581042, 0.099831, 0.404052, -0.433911, -0.628881)
+layers = 524288
+mesh = SubResource("BoxMesh_4qoxg")
+
+[node name="WeaponHitBox" type="Area3D" parent="Neck/Camera3D/WeaponPivot/WeaponMesh"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Neck/Camera3D/WeaponPivot/WeaponMesh/WeaponHitBox"]
+transform = Transform3D(1, -8.02747e-09, -1.41057e-10, -8.85946e-10, 1, 9.31323e-10, 4.39456e-10, -1.19209e-07, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_f6rip")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Neck"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Neck/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="SubViewportCamera" type="Camera3D" parent="Neck/SubViewportContainer/SubViewport"]
+cull_mask = 524288
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -110,7 +267,16 @@ volume_db = -20.0
 unit_size = 1.1
 max_db = 2.025
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerBody" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_201kb")
 }
+autoplay = "idle"
+
+[node name="AnimationPlayerWeapon" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_201kb")
+}
+autoplay = "idle"
+
+[connection signal="animation_finished" from="AnimationPlayerWeapon" to="." method="_on_animation_player_weapon_animation_finished"]

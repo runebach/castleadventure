@@ -19,7 +19,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var interact_ray = $Neck/Camera3D/InteractRay
 @onready var grab_ray = $Neck/Camera3D/GrabRay
 @onready var footsteps = $Footsteps
-@onready var head_bob_animation = $AnimationPlayer
+@onready var animation_player_body = $AnimationPlayerBody
+@onready var animation_player_weapon = $AnimationPlayerWeapon
+@onready var weapon_hit_box = $Neck/Camera3D/WeaponPivot/WeaponMesh/WeaponHitBox
+@onready var sub_viewport_camera = $Neck/SubViewportContainer/SubViewport/SubViewportCamera
+
 
 
 
@@ -34,6 +38,9 @@ var grabbed_object_parent
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _process(delta):
+	sub_viewport_camera.set_global_transform(camera.get_global_transform())
 
 
 func _physics_process(delta):
@@ -58,7 +65,11 @@ func _physics_process(delta):
 	
 	#Handle player movement animation
 	if velocity != Vector3() and is_on_floor():
-		head_bob_animation.play("head_bob")
+		animation_player_body.play("head_bob")
+		
+	if Input.is_action_just_pressed("attack"):
+		animation_player_weapon.play("attack")
+		weapon_hit_box.monitoring = true
 
 
 #Handles mouse input
@@ -80,9 +91,10 @@ func _unhandled_input(event: InputEvent):
 	if Input.is_action_just_pressed("interact"):
 		interact()
 	
-	#if Input.is_action_just_pressed("grab"):
+	if Input.is_action_just_pressed("grab"):
 		#pass
-	grab_and_release()
+		grab_and_release()
+
 
 func interact() -> void:
 	if interact_ray.is_colliding():
@@ -106,25 +118,32 @@ func grab_raycast():
 func grab_and_release():
 	grab_raycast()
 	
-	if Input.is_action_just_pressed("grab"):
+	#if Input.is_action_just_pressed("grab"):
 		
-		if is_carrying_object == false:
-			if can_grab_object :
-				var root = get_tree().root
-				grabbed_object = root.get_child(1).get_node("Map/Obstacles/" + str(object_to_grab_name))
-				print(grabbed_object)
-				grabbed_object_parent = grabbed_object.get_parent()
-				grabbed_object.reparent(self)
-				grabbed_object.is_grabbed()
-				is_carrying_object = true
-				can_look_around = false
-				speed_modifier = 0.5
-		else:
-			grabbed_object.reparent(grabbed_object_parent)
-			is_carrying_object = false
-			grabbed_object.is_released()
-			can_look_around = true
-			speed_modifier = 1
+	if is_carrying_object == false:
+		if can_grab_object :
+			var root = get_tree().root
+			grabbed_object = root.get_child(1).get_node("Map/Obstacles/" + str(object_to_grab_name))
+			print(grabbed_object)
+			grabbed_object_parent = grabbed_object.get_parent()
+			grabbed_object.reparent(self)
+			grabbed_object.is_grabbed()
+			is_carrying_object = true
+			can_look_around = false
+			speed_modifier = 0.5
+	else:
+		grabbed_object.reparent(grabbed_object_parent)
+		is_carrying_object = false
+		grabbed_object.is_released()
+		can_look_around = true
+		speed_modifier = 1
 
 
 
+
+
+
+func _on_animation_player_weapon_animation_finished(anim_name):
+	if anim_name == "attack":
+		animation_player_weapon.play("idle")
+		weapon_hit_box.monitoring = false
